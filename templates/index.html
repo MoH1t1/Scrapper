@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="search-container">
+    <div class="search-box">
+        <h2>Find Product Reviews</h2>
+        <p>Enter a product name to scrape reviews from Flipkart</p>
+        
+        <form action="/review" method="POST" class="search-form">
+            <div class="input-group">
+                <input type="text" name="content" id="content" placeholder="e.g. iPhone 13, Samsung TV" required>
+                <button type="submit" class="search-button">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+        </form>
+        
+        {% if error %}
+            <div class="error-message">
+                <i class="fas fa-exclamation-circle"></i> {{ error }}
+            </div>
+        {% endif %}
+        
+        <div class="features">
+            <div class="feature">
+                <i class="fas fa-bolt"></i>
+                <h3>Fast Scraping</h3>
+                <p>Get reviews in seconds</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-database"></i>
+                <h3>Data Storage</h3>
+                <p>Automatically saved to MongoDB</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-chart-bar"></i>
+                <h3>Analytics Ready</h3>
+                <p>Perfect for sentiment analysis</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/results.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="results-container">
+    <div class="results-header">
+        <h2>Reviews for <span class="product-name">{{ product }}</span></h2>
+        <p class="review-count">{{ count }} reviews found</p>
+    </div>
+    
+    <div class="reviews-table">
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rating</th>
+                        <th>Reviewer</th>
+                        <th>Title</th>
+                        <th>Review</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for review in reviews %}
+                    <tr>
+                        <td class="rating-cell">
+                            <span class="rating">{{ review['Rating'] }}</span>
+                        </td>
+                        <td class="reviewer-cell">
+                            <div class="reviewer-avatar">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div class="reviewer-name">{{ review['Name'] }}</div>
+                        </td>
+                        <td class="title-cell">{{ review['CommentHead'] }}</td>
+                        <td class="review-cell">
+                            <div class="review-content">{{ review['Comment'] }}</div>
+                            <div class="review-product">Product: {{ review['Product'] }}</div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="back-to-search">
+        <a href="/" class="back-button">
+            <i class="fas fa-arrow-left"></i> New Search
+        </a>
+    </div>
+</div>
+
+<script>
+document.getElementById('export-csv').addEventListener('click', function() {
+    // Implement CSV export functionality
+    alert('CSV export functionality will be implemented here');
+});
+
+document.getElementById('export-json').addEventListener('click', function() {
+    // Implement JSON export functionality
+    alert('JSON export functionality will be implemented here');
+});
+</script>
+{% endblock %}
